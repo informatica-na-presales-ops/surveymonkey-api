@@ -1,0 +1,169 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "SurveyMonkey API",
+    "version": "2021.1",
+    "title": "SurveyMonkey API"
+  },
+  "schemes": [
+    "https"
+  ],
+  "host": "api.surveymonkey.com",
+  "basePath": "/v3",
+  "paths": {
+    "/surveys/{survey_id}/responses/bulk": {
+      "get": {
+        "summary": "Retrieves a list of full expanded responses, including answers to all questions.",
+        "operationId": "surveyResponsesBulkGet",
+        "tags": [
+          "surveyResponsesBulkGet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "survey_id",
+            "type": "number",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "simple",
+            "in": "query",
+            "type": "string",
+            "default": "false"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/surveyResponsesBulkGet"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "surveyResponsesBulkGet##data##pages##questions##answers": {
+      "type": "object",
+      "properties": {
+        "choice_id": {
+          "type": "string"
+        },
+        "row_id": {
+          "type": "string"
+        },
+        "simple_text": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "surveyResponsesBulkGet##data##pages##questions": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/surveyResponsesBulkGet##data##pages##questions##answers"
+          }
+        },
+        "family": {
+          "type": "string"
+        },
+        "subtype": {
+          "type": "string"
+        },
+        "heading": {
+          "type": "string"
+        }
+      }
+    },
+    "surveyResponsesBulkGet##data##pages": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/surveyResponsesBulkGet##data##pages##questions"
+          }
+        }
+      }
+    },
+    "surveyResponsesBulkGet##data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "response_status": {
+          "type": "string"
+        },
+        "ip_address": {
+          "type": "string"
+        },
+        "survey_id": {
+          "type": "string"
+        },
+        "date_modified": {
+          "type": "string"
+        },
+        "date_created": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/surveyResponsesBulkGet##data##pages"
+          }
+        }
+      }
+    },
+    "surveyResponsesBulkGet": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/surveyResponsesBulkGet##data"
+          }
+        },
+        "per_page": {
+          "type": "number"
+        },
+        "page": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "links": {
+          "properties": {
+            "self": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+GET https://api.surveymonkey.com/v3/surveys
+Authorization: Bearer {{token}}
+
+###
+
+GET https://api.surveymonkey.com/v3/surveys/{{survey-id}}
+Authorization: Bearer {{token}}
+
+###
+
+GET https://api.surveymonkey.com/v3/surveys/{{survey-id}}/collectors
+Authorization: Bearer {{token}}
+
+###
+
+GET https://api.surveymonkey.com/v3/surveys/{{survey-id}}/responses/bulk?simple=true
+Authorization: Bearer {{token}}
+
+###
+
+GET https://api.surveymonkey.com/v3/users/me
+Authorization: Bearer {{token}}
