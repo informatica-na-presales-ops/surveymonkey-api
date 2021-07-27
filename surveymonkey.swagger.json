@@ -11,6 +11,36 @@
   "host": "api.surveymonkey.com",
   "basePath": "/v3",
   "paths": {
+    "/surveys": {
+      "get": {
+        "summary": "Returns a list of surveys owned or shared with the authenticated user.",
+        "operationId": "surveysGet",
+        "tags": [
+          "surveysGet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/surveysGet"
+            }
+          }
+        }
+      }
+    },
     "/surveys/{survey_id}/responses/bulk": {
       "get": {
         "summary": "Retrieves a list of full expanded responses, including answers to all questions.",
@@ -145,6 +175,50 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/surveyResponsesBulkGet##data"
+          }
+        },
+        "per_page": {
+          "type": "number"
+        },
+        "page": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "links": {
+          "properties": {
+            "self": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "surveysGet##data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        }
+      }
+    },
+    "surveysGet": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/surveysGet##data"
           }
         },
         "per_page": {
