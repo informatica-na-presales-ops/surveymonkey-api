@@ -18,5 +18,10 @@ Authorization: Bearer {{token}}
 
 ###
 
+GET https://api.surveymonkey.com/v3/surveys/{{survey-id}}/responses/{{response-id}}/details
+Authorization: Bearer {{token}}
+
+###
+
 GET https://api.surveymonkey.com/v3/users/me
 Authorization: Bearer {{token}}
